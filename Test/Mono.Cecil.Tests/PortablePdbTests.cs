@@ -750,25 +750,26 @@ class Program
 		}
 
 		[Test]
-		public void LoadPdbOnDemand ()
+		public void ClearSequencePoints ()
 		{
-			var assembly = File.ReadAllBytes (GetAssemblyResourcePath ("Microsoft.AspNetCore.Components.dll"));
-			var pdb = File.ReadAllBytes (GetAssemblyResourcePath ("Microsoft.AspNetCore.Components.pdb"));
+			TestPortablePdbModule (module => {
+				var type = module.GetType ("PdbTarget.Program");
+				var main = type.GetMethod ("Main");
 
-			var module = ModuleDefinition.ReadModule (new MemoryStream (assembly), new ReaderParameters (ReadingMode.Immediate));
+				main.DebugInformation.SequencePoints.Clear ();
 
-			var type = module.GetType ("Microsoft.AspNetCore.Components.Rendering.ComponentState");
-			var main = type.GetMethod ("RenderIntoBatch");
-			var debug_info = main.DebugInformation;
+				var destination = Path.Combine (Path.GetTempPath (), "mylib.dll");
+				module.Write(destination, new WriterParameters { WriteSymbols = true });
 
-			var pdbReaderProvider = new PdbReaderProvider ();
-			var symbolReader = pdbReaderProvider.GetSymbolReader (module,  new MemoryStream (pdb));
-			module.ReadSymbols (symbolReader);
-			type = module.GetType ("Microsoft.AspNetCore.Components.Rendering.ComponentState");
-			main = type.GetMethod ("RenderIntoBatch");
-			debug_info = main.DebugInformation;
-			Assert.AreEqual (9, debug_info.SequencePoints.Count);
+				Assert.Zero (main.DebugInformation.SequencePoints.Count);
+
+				using (var resultModule = ModuleDefinition.ReadModule (destination, new ReaderParameters { ReadSymbols = true })) {
+					type = resultModule.GetType ("PdbTarget.Program");
+					main = type.GetMethod ("Main");
+
+					Assert.Zero (main.DebugInformation.SequencePoints.Count);
+				}
+			});
 		}
-
 	}
 }
