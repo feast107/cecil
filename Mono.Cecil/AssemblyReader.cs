@@ -182,7 +182,7 @@ namespace Mono.Cecil {
 			ReadCustomAttributes (module);
 
 			var assembly = module.Assembly;
-			if (assembly == null)
+			if (module.kind == ModuleKind.NetModule || assembly == null)
 				return;
 
 			ReadCustomAttributes (assembly);
@@ -667,8 +667,10 @@ namespace Mono.Cecil {
 					AssemblyResolver = module.AssemblyResolver
 				};
 
-				modules.Add (ModuleDefinition.ReadModule (
-					GetModuleFileName (name), parameters));
+				var netmodule = ModuleDefinition.ReadModule (GetModuleFileName (name), parameters);
+				netmodule.assembly = this.module.assembly;
+
+				modules.Add (netmodule);
 			}
 
 			return modules;
@@ -3013,7 +3015,7 @@ namespace Mono.Cecil {
 				value = new decimal (signature.ReadInt32 (), signature.ReadInt32 (), signature.ReadInt32 (), (b & 0x80) != 0, (byte) (b & 0x7f));
 			} else if (type.IsTypeOf ("System", "DateTime")) {
 				value = new DateTime (signature.ReadInt64());
-			} else if (type.etype == ElementType.Object || type.etype == ElementType.None || type.etype == ElementType.Class || type.etype == ElementType.Array) {
+			} else if (type.etype == ElementType.Object || type.etype == ElementType.None || type.etype == ElementType.Class || type.etype == ElementType.Array || type.etype == ElementType.GenericInst) {
 				value = null;
 			} else
 				value = signature.ReadConstantSignature (type.etype);
