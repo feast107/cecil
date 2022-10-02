@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <OutDir>$(MSBuildThisFileDirectory)Lib\$(Configuration)\$(TargetFramework)</OutDir>
     <EnableDefaultItems>false</EnableDefaultItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <IsPackable>false</IsPackable>
