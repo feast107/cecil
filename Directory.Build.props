@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <Reference Include="System" />
