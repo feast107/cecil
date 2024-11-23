@@ -1058,15 +1058,15 @@ namespace Mono.Cecil {
 				throw new InvalidOperationException ();
 
 			var provider = new DefaultSymbolReaderProvider (throwIfNoSymbol: true);
-			ReadSymbols (provider.GetSymbolReader (this, file_name), throwIfSymbolsAreNotMaching: true);
+			ReadSymbols (provider.GetSymbolReader (this, file_name), throwIfSymbolsAreNotMatching: true);
 		}
 
 		public void ReadSymbols (ISymbolReader reader)
 		{
-			ReadSymbols(reader, throwIfSymbolsAreNotMaching: true);
+			ReadSymbols(reader, throwIfSymbolsAreNotMatching: true);
 		}
 
-		public void ReadSymbols (ISymbolReader reader, bool throwIfSymbolsAreNotMaching)
+		public void ReadSymbols (ISymbolReader reader, bool throwIfSymbolsAreNotMatching)
 		{
 			if (reader == null)
 				throw new ArgumentNullException ("reader");
@@ -1076,7 +1076,7 @@ namespace Mono.Cecil {
 			if (!symbol_reader.ProcessDebugHeader (GetDebugHeader ())) {
 				symbol_reader = null;
 
-				if (throwIfSymbolsAreNotMaching)
+				if (throwIfSymbolsAreNotMatching)
 					throw new SymbolsNotMatchingException ("Symbols were found but are not matching the assembly");
 
 				return;
