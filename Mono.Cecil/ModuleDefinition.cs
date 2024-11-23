@@ -1069,7 +1069,7 @@ namespace Mono.Cecil {
 		public void ReadSymbols (ISymbolReader reader, bool throwIfSymbolsAreNotMatching)
 		{
 			if (reader == null)
-				throw new ArgumentNullException ("reader");
+				throw new ArgumentNullException (nameof(reader));
 
 			symbol_reader = reader;
 

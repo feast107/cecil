@@ -111,7 +111,7 @@ namespace Microsoft.Cci.Pdb {
     // Suppose our Hashtable currently has capacity x and enough elements are added 
     // such that a resize needs to occur. Resizing first computes 2x then finds the 
     // first prime in the table greater than 2x, i.e. if primes are ordered 
-    // p_1, p_2, …, p_i,…, it finds p_n such that p_n-1 < 2x < p_n. 
+    // p_1, p_2, ï¿½, p_i,ï¿½, it finds p_n such that p_n-1 < 2x < p_n. 
     // Doubling is important for preserving the asymptotic complexity of the 
     // hashtable operations such as add.  Having a prime guarantees that double 
     // hashing does not lead to infinite loops.  IE, your hash function will be 
@@ -192,9 +192,9 @@ namespace Microsoft.Cci.Pdb {
     //| <include path='docs/doc[@for="IntHashTable.IntHashTable3"]/*' />
     internal IntHashTable(int capacity, int loadFactorPerc) {
       if (capacity < 0)
-        throw new ArgumentOutOfRangeException("capacity", "ArgumentOutOfRange_NeedNonNegNum");
+        throw new ArgumentOutOfRangeException(nameof(capacity), "ArgumentOutOfRange_NeedNonNegNum");
       if (!(loadFactorPerc >= 10 && loadFactorPerc <= 100))
-        throw new ArgumentOutOfRangeException("loadFactorPerc", String.Format("ArgumentOutOfRange_IntHashTableLoadFactor", 10, 100));
+        throw new ArgumentOutOfRangeException(nameof(loadFactorPerc), String.Format("ArgumentOutOfRange_IntHashTableLoadFactor", 10, 100));
 
       // Based on perf work, .72 is the optimal load factor for this table.
       this.loadFactorPerc = (loadFactorPerc * 72) / 100;
@@ -386,7 +386,7 @@ namespace Microsoft.Cci.Pdb {
         throw new ArgumentException("Argument_KeyLessThanZero");
       }
       if (nvalue == null) {
-        throw new ArgumentNullException("nvalue", "ArgumentNull_Value");
+        throw new ArgumentNullException(nameof(nvalue), "ArgumentNull_Value");
       }
       if (count >= loadsize) {
         expand();

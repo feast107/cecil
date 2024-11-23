@@ -112,7 +112,7 @@ namespace Mono.Collections.Generic {
 		public Collection (ICollection<T> items)
 		{
 			if (items == null)
-				throw new ArgumentNullException ("items");
+				throw new ArgumentNullException (nameof(items));
 
 			this.items = new T [items.Count];
 			items.CopyTo (this.items, 0);

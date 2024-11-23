@@ -58,7 +58,7 @@ namespace Mono.Cecil.Cil {
 		internal SequencePoint (int offset, Document document)
 		{
 			if (document == null)
-				throw new ArgumentNullException ("document");
+				throw new ArgumentNullException (nameof(document));
 
 			this.offset = new InstructionOffset (offset);
 			this.document = document;
@@ -67,7 +67,7 @@ namespace Mono.Cecil.Cil {
 		public SequencePoint (Instruction instruction, Document document)
 		{
 			if (document == null)
-				throw new ArgumentNullException ("document");
+				throw new ArgumentNullException (nameof(document));
 
 			this.offset = new InstructionOffset (instruction);
 			this.document = document;

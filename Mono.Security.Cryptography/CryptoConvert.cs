@@ -231,7 +231,7 @@ namespace Mono.Security.Cryptography {
 		static public RSA FromCapiKeyBlob (byte[] blob, int offset)
 		{
 			if (blob == null)
-				throw new ArgumentNullException ("blob");
+				throw new ArgumentNullException (nameof(blob));
 			if (offset >= blob.Length)
 				throw new ArgumentException ("blob is too small.");
 

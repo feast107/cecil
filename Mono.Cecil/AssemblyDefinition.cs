@@ -109,9 +109,9 @@ namespace Mono.Cecil {
 		public static AssemblyDefinition CreateAssembly (AssemblyNameDefinition assemblyName, string moduleName, ModuleParameters parameters)
 		{
 			if (assemblyName == null)
-				throw new ArgumentNullException ("assemblyName");
+				throw new ArgumentNullException (nameof(assemblyName));
 			if (moduleName == null)
-				throw new ArgumentNullException ("moduleName");
+				throw new ArgumentNullException (nameof(moduleName));
 			Mixin.CheckParameters (parameters);
 			if (parameters.Kind == ModuleKind.NetModule)
 				throw new ArgumentException ("kind");

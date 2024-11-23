@@ -54,7 +54,7 @@ namespace Mono.Cecil {
 			: base ("Failed to resolve " + member.FullName)
 		{
 			if (member == null)
-				throw new ArgumentNullException ("member");
+				throw new ArgumentNullException (nameof(member));
 
 			this.member = member;
 		}
@@ -63,7 +63,7 @@ namespace Mono.Cecil {
 			: base ("Failed to resolve " + member.FullName, innerException)
 		{
 			if (member == null)
-				throw new ArgumentNullException ("member");
+				throw new ArgumentNullException (nameof(member));
 
 			this.member = member;
 		}
@@ -89,7 +89,7 @@ namespace Mono.Cecil {
 		public MetadataResolver (IAssemblyResolver assemblyResolver)
 		{
 			if (assemblyResolver == null)
-				throw new ArgumentNullException ("assemblyResolver");
+				throw new ArgumentNullException (nameof(assemblyResolver));
 
 			assembly_resolver = assemblyResolver;
 		}

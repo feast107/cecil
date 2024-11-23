@@ -93,7 +93,7 @@ namespace Mono.Cecil {
 			: this ()
 		{
 			if (returnType == null)
-				throw new ArgumentNullException ("returnType");
+				throw new ArgumentNullException (nameof(returnType));
 
 			this.signature.ReturnType = returnType;
 		}

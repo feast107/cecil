@@ -163,7 +163,7 @@ namespace Mono.Cecil.Cil {
 			: this ()
 		{
 			if (start == null)
-				throw new ArgumentNullException ("start");
+				throw new ArgumentNullException (nameof(start));
 
 			this.start = new InstructionOffset (start);
 
@@ -215,7 +215,7 @@ namespace Mono.Cecil.Cil {
 		public InstructionOffset (Instruction instruction)
 		{
 			if (instruction == null)
-				throw new ArgumentNullException ("instruction");
+				throw new ArgumentNullException (nameof(instruction));
 
 			this.instruction = instruction;
 			this.offset = null;
@@ -256,7 +256,7 @@ namespace Mono.Cecil.Cil {
 		public VariableIndex (VariableDefinition variable)
 		{
 			if (variable == null)
-				throw new ArgumentNullException ("variable");
+				throw new ArgumentNullException (nameof(variable));
 
 			this.variable = variable;
 			this.index = null;
@@ -325,7 +325,7 @@ namespace Mono.Cecil.Cil {
 		internal VariableDebugInformation (int index, string name)
 		{
 			if (name == null)
-				throw new ArgumentNullException ("name");
+				throw new ArgumentNullException (nameof(name));
 
 			this.index = new VariableIndex (index);
 			this.name = name;
@@ -334,9 +334,9 @@ namespace Mono.Cecil.Cil {
 		public VariableDebugInformation (VariableDefinition variable, string name)
 		{
 			if (variable == null)
-				throw new ArgumentNullException ("variable");
+				throw new ArgumentNullException (nameof(variable));
 			if (name == null)
-				throw new ArgumentNullException ("name");
+				throw new ArgumentNullException (nameof(name));
 
 			this.index = new VariableIndex (variable);
 			this.name = name;
@@ -368,7 +368,7 @@ namespace Mono.Cecil.Cil {
 		public ConstantDebugInformation (string name, TypeReference constant_type, object value)
 		{
 			if (name == null)
-				throw new ArgumentNullException ("name");
+				throw new ArgumentNullException (nameof(name));
 
 			this.name = name;
 			this.constant_type = constant_type;
@@ -757,7 +757,7 @@ namespace Mono.Cecil.Cil {
 		internal MethodDebugInformation (MethodDefinition method)
 		{
 			if (method == null)
-				throw new ArgumentNullException ("method");
+				throw new ArgumentNullException (nameof(method));
 
 			this.method = method;
 			this.token = new MetadataToken (TokenType.MethodDebugInformation, method.MetadataToken.RID);

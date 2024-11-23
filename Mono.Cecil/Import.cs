@@ -48,7 +48,7 @@ namespace Mono.Cecil {
 		public ImportGenericContext (IGenericParameterProvider provider)
 		{
 			if (provider == null)
-				throw new ArgumentNullException ("provider");
+				throw new ArgumentNullException (nameof(provider));
 
 			stack = null;
 

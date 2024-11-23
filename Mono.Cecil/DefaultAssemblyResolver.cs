@@ -39,7 +39,7 @@ namespace Mono.Cecil {
 		protected void RegisterAssembly (AssemblyDefinition assembly)
 		{
 			if (assembly == null)
-				throw new ArgumentNullException ("assembly");
+				throw new ArgumentNullException (nameof(assembly));
 
 			var name = assembly.Name.FullName;
 			if (cache.ContainsKey (name))

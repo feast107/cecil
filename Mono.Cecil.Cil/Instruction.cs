@@ -156,7 +156,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, TypeReference type)
 		{
 			if (type == null)
-				throw new ArgumentNullException ("type");
+				throw new ArgumentNullException (nameof(type));
 			if (opcode.OperandType != OperandType.InlineType &&
 				opcode.OperandType != OperandType.InlineTok)
 				throw new ArgumentException ("opcode");
@@ -167,7 +167,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, CallSite site)
 		{
 			if (site == null)
-				throw new ArgumentNullException ("site");
+				throw new ArgumentNullException (nameof(site));
 			if (opcode.Code != Code.Calli)
 				throw new ArgumentException ("code");
 
@@ -177,7 +177,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, MethodReference method)
 		{
 			if (method == null)
-				throw new ArgumentNullException ("method");
+				throw new ArgumentNullException (nameof(method));
 			if (opcode.OperandType != OperandType.InlineMethod &&
 				opcode.OperandType != OperandType.InlineTok)
 				throw new ArgumentException ("opcode");
@@ -188,7 +188,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, FieldReference field)
 		{
 			if (field == null)
-				throw new ArgumentNullException ("field");
+				throw new ArgumentNullException (nameof(field));
 			if (opcode.OperandType != OperandType.InlineField &&
 				opcode.OperandType != OperandType.InlineTok)
 				throw new ArgumentException ("opcode");
@@ -199,7 +199,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, string value)
 		{
 			if (value == null)
-				throw new ArgumentNullException ("value");
+				throw new ArgumentNullException (nameof(value));
 			if (opcode.OperandType != OperandType.InlineString)
 				throw new ArgumentException ("opcode");
 
@@ -259,7 +259,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, Instruction target)
 		{
 			if (target == null)
-				throw new ArgumentNullException ("target");
+				throw new ArgumentNullException (nameof(target));
 			if (opcode.OperandType != OperandType.InlineBrTarget &&
 				opcode.OperandType != OperandType.ShortInlineBrTarget)
 				throw new ArgumentException ("opcode");
@@ -270,7 +270,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, Instruction [] targets)
 		{
 			if (targets == null)
-				throw new ArgumentNullException ("targets");
+				throw new ArgumentNullException (nameof(targets));
 			if (opcode.OperandType != OperandType.InlineSwitch)
 				throw new ArgumentException ("opcode");
 
@@ -280,7 +280,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, VariableDefinition variable)
 		{
 			if (variable == null)
-				throw new ArgumentNullException ("variable");
+				throw new ArgumentNullException (nameof(variable));
 			if (opcode.OperandType != OperandType.ShortInlineVar &&
 				opcode.OperandType != OperandType.InlineVar)
 				throw new ArgumentException ("opcode");
@@ -291,7 +291,7 @@ namespace Mono.Cecil.Cil {
 		public static Instruction Create (OpCode opcode, ParameterDefinition parameter)
 		{
 			if (parameter == null)
-				throw new ArgumentNullException ("parameter");
+				throw new ArgumentNullException (nameof(parameter));
 			if (opcode.OperandType != OperandType.ShortInlineArg &&
 				opcode.OperandType != OperandType.InlineArg)
 				throw new ArgumentException ("opcode");
