@@ -190,6 +190,23 @@ namespace Mono.Cecil {
 
 			return new RSACryptoServiceProvider (parameters);
 		}
+		
+		public static RSA CreateRSA (this StrongNameKeyPair key_pair)
+		{
+			byte [] key;
+			string  key_container;
+
+			if (!TryGetKeyContainer (key_pair, out key, out key_container))
+				return CryptoConvert.FromCapiKeyBlob (key);
+
+			var parameters = new CspParameters {
+				Flags            = CspProviderFlags.UseMachineKeyStore,
+				KeyContainerName = key_container,
+				KeyNumber        = 2,
+			};
+
+			return new RSACryptoServiceProvider (parameters);
+		}
 
 		static bool TryGetKeyContainer (ISerializable key_pair, out byte [] key, out string key_container)
 		{

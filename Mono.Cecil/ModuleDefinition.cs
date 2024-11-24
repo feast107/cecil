@@ -19,6 +19,12 @@ using Mono.Cecil.Metadata;
 using Mono.Cecil.PE;
 using Mono.Collections.Generic;
 
+#if NETSTANDARD
+using StrongNameKeyPair = Mono.Cecil.StrongNameKeyPair;
+#else
+using StrongNameKeyPair = System.Reflection.StrongNameKeyPair;
+#endif
+
 namespace Mono.Cecil {
 
 	public enum ReadingMode {
@@ -185,7 +191,7 @@ namespace Mono.Cecil {
 		bool write_symbols;
 		byte [] key_blob;
 		string key_container;
-		SR.StrongNameKeyPair key_pair;
+		StrongNameKeyPair key_pair;
 
 		public uint? Timestamp {
 			get { return timestamp; }
@@ -221,7 +227,7 @@ namespace Mono.Cecil {
 			set { key_container = value; }
 		}
 
-		public SR.StrongNameKeyPair StrongNameKeyPair {
+		public StrongNameKeyPair StrongNameKeyPair {
 			get { return key_pair; }
 			set { key_pair = value; }
 		}
